@@ -2,14 +2,16 @@
   box-sizing: border-box; }
 
 #app-container {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif; }
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  max-width: 600px;
+  margin: auto; }
 
 h1 {
   font-weight: 300;
   color: #1E8BC3; }
 
-h1.usa {
-  color: #3A539B; }
+h1 span {
+  color: #CF000F; }
 
 .holiday {
   text-align: center;
