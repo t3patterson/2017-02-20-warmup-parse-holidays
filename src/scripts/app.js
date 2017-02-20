@@ -12,7 +12,9 @@ let holidayColl =  new HolidayCollection()
 //TASK :   
 //--------------------------------------------------------------------------
 
-holidayColl.fetch().then(function(){
+holidayColl.fetch().then(function(serverRes){
+	console.log(serverRes)
+
 	console.log(holidayColl)
 	//should have several models
    let holidayView = new HolidayListingView()

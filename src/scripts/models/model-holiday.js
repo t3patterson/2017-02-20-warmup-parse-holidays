@@ -4,12 +4,36 @@ const HolidayModel = Backbone.Model.extend()
 
 export const HolidayCollection = Backbone.Collection.extend({
 	model: HolidayModel,
-	parse: function(serverRes){
+	parse: function(serverResObj){
 		//Your work here
+		let outputArrayOfObj = []
 		
+		for (var dateProperty in serverResObj.holidays ){
+			console.log(dateProperty)
+			console.log( serverResObj.holidays[dateProperty] )
+			console.log('-----');
+			let holidayArrayOfObj = serverResObj.holidays[dateProperty]
+			
+			//OPTION A
+			holidayArrayOfObj.forEach( function(holidayObj){
+				outputArrayOfObj.push(holidayObj)
+			}) 
+		
+			//OPTION B
+			// outputArrayOfObj = [...outputArrayOfObj, ...holidayArrayOfObj]
+		
+	  }
 
 		//ADVENTURE MODE: Sort the holidays by date in ascending order
-		return serverRes
+		return outputArrayOfObj
+		//  [ 
+		// 	{ date: "2016-01-01", name: "Last Day of Kwanzaa", observed : "2016-01-01", public : false},
+		// 	{ date: "2016-01-31", name: "New Years Day", observed : "2016-01-01", public : true },
+		// 	{ date: "2016-02-14", name: "Valentines Day", observed : "2016-02-14", public : true },
+		// 	{ date: "2016-03-25", name: "St Patricks Day", observed : "2016-3-25", public : true },
+
+		// ]
+		// 
 	},
-	url: 'https://holidayapi.com/v1/holidays?key=f51e7b04-9e6a-4122-9c27-667242df49eb&country=US&year=2016'
+	url: 'https://api.myjson.com/bins/17zml5'
 })

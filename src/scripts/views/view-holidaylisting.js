@@ -7,11 +7,14 @@ const HolidayListingView = Backbone.View.extend({
 		let holidayHtml = holidayModels.map(function(holidayMod){
 
          // EXPLORER MODE: add a 'holiday_public' class-name to the 
-         //                div.holiay element IF the holidayModel
+         //                div.holiday element IF the holidayModel
          //                is a public holiday
-
+			let divClassName = 'holiday'
+			if(holidayMod.get('public') === true){
+				divClassName = 'holiday holiday_public'
+			}
 			return `
-				<div class="holiday">
+				<div class="${divClassName}">
 					<h2 class="col_left">${ holidayMod.get('name') }</h2>
 					<div class="col_right">
 						<p><i class="fa fa-2x fa-calendar"></i></p>
