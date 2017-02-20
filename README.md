@@ -1,87 +1,17 @@
-#ES6 Module Bundler Setup
+#Warmup - Parse the Holidays
 
-##Webpack Configuration:
-```
-const webpack = require('webpack')
-const nodeEnv = process.env.NODE_ENV || 'production'
+###Task
+The [Holiday API](https://holidayapi.com/) returns information about national holidays for countries the world.
 
-module.exports = {
-  devtool : 'source-map',
-  entry:   { filename: './src/index.js' },
-  output : { filename: './dist/js/app.js' },
-  module: {
-    loaders: [	    
-	 ]
-  },
-  plugins: [
-     //uglify js
-     new webpack.optimize.UglifyJsPlugin({
-			compress: { warnings: false }, 
-			output: {comments: false},
-         sourceMap: true
-	  }),
-	
-     //env plugin
-	  new webpack.DefinePlugin({
-        'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
-	  }),
-  ]
-}
+Inside of the `model-holiday.js` file, write the `.parse()` method in the collection constructor so that all of the holidays objects for each of the holiday-dates from the api will be properly parsed into models. 
 
-```
+In other words, you will need the parse method to take the raw server response and return an array of objects with all of the holidays.
 
+You can inspect the api in your browser with this link:
+https://holidayapi.com/v1/holidays?key=f51e7b04-9e6a-4122-9c27-667242df49eb&country=US&year=2016
 
-#Configure #ES6
-#### In `package.json`
-- babel-core
-- babel-loader
-- babel-preset-es2015
+###Explorer Mode
+Inside of the `view-holidaylisting.js` file, add a 'holiday_public' class-name to the  `<div class="holiday">` element IF the holidayModel is a public holiday.
 
-#### ES6: In `webpack.config.js`
-```
-	...
-   loaders: [
-		{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			loader: 'babel-loader',
-			query: {
-				presets: ['es2015']
-			}
-		},
-   ...
-```
-
-
-### Configure Scss
-#### (in `package.json`
-```
-    "css-loader": "^0.26.1",
-    "sass-loader": "^5.0.1",
-    "style-loader": "^0.13.1",
-    "node-sass": "^4.5.0",
-    "extract-text-webpack-plugin": "^2.0.0-beta.5",
-```
-
-#### (2) in `webpack.config.js`
-```
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-modules: {
-  loaders: [
-	  ...
-     {
-		  test: /\.scss$/,
-		  loader: ExtractTextPlugin.extract({fallbackLoader: "style-loader", loader: "css-loader!sass-loader"})		 
-	  },
-	]
-  },
-
-  plugins: {
-	 ...
-    new ExtractTextPlugin({filename: './dist/styles.css', allChunks: true})
-  }
-
-}
-  
-```
+###Adventure Mode
+Use `.sort()` inside the collection constructor's `.parse()` method to sort the holidays into ascending order by date.
